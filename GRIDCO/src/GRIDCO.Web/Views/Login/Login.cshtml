@@ -1,0 +1,258 @@
+﻿@model GRIDCO.Core.ProjectAggregate.Entity.GRIDCO_User_Credential
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive bootstrap landing template">
+    <meta name="author" content="Themesdesign">
+
+    <link rel="shortcut icon" href="images/apicol.png">
+
+    <title>ଓଡ଼ିଶା କୃଷି ପ୍ରୋତ୍ସାହନ ଏବଂ ପୁଞ୍ଜି ଲଗାଣ ନିଗମ ଲିଃ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Login/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Login/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="~/Login/css/mobiriseicons.css" rel="stylesheet">
+
+    <!--Magnific popup -->
+    <link rel="stylesheet" type="text/css" href="~/Login/css/magnific-popup.css" />
+
+    <!--Slider-->
+    <link rel="stylesheet" href="~/Login/css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/Login/css/owl.theme.css" />
+    <link rel="stylesheet" href="~/Login/css/owl.transitions.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/Login/css/menu.css" rel="stylesheet">
+    <link href="~/Login/css/style.css" rel="stylesheet">
+
+    <!--Template Color-->
+    <link href="~/Login/css/colors/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar-->
+    <!-- home start -->
+    <section class="section bg-sub-page-home section1">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 pt-3 page-next-level d-flex">
+                    <img src="~/Login/images/APICOL-Logo.png" alt="" height="90" />
+
+                    <div class="page-next text-light padtop">
+                        <h4 class="">
+                            ଓଡ଼ିଶା କୃଷି ପ୍ରୋତ୍ସାହନ ଏବଂ ପୁଞ୍ଜି ଲଗାଣ ନିଗମ ଲିଃ
+                        </h4>
+                        <h4 style="font-size: 18px;font-weight: 500;">
+                            The Agricultural Promotion and Investment
+                            Corporation of Odisha Limited (APICOL)
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- home end -->
+    <!-- login page -->
+    <section class="section" style="padding-top: 58px !important;
+    background-image: url(../Login/images/bg.jpeg);
+    background-attachment: fixed;
+    position: relative !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    padding-bottom: 58px !important;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7"></div>
+                <div class="col-md-5 ">
+                    <form role="/Login/Login" class="intro-form" method="post">
+
+
+                        <div class="form-group">
+                            <label>User Name</label>
+
+                            @Html.TextBoxFor(x => x.User_Name, new { @placeholder = "User Name/ଇଉଜର ନାମ", @class = "form-control", @required = "true", @autocomplete = "off" })
+                            @if (TempData["warning"] != null)
+                            {
+                                <span class="text-danger" readonly>@TempData["warning"]</span>
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            @Html.TextBoxFor(x => x.Password, new { @placeholder = "Password/ପାସୱାର୍ଡ", @class = "form-control", @required = "true", @autocomplete = "off", @type = "password" })
+                        </div>
+
+
+
+
+
+                        <div class="form-group" style="margin-top: 5px; margin-bottom: 15px;display:flex">
+                            <div style="background-image: url('../Login/images/download.jpg'); padding: 16px; width: 40%; height: 47px;" class="captcha_image">
+                                <span id="captcha" style=" font-weight: 600;align-content:center; font-size: 23px; width: 40%;font-family: 'Syne Tactile', cursive; color: #ffff; ">@ViewBag.Captch</span>
+
+                            </div>
+                            &nbsp; &nbsp; &nbsp;
+                            <div>
+                                <i class="fa fa-refresh" style="font-size: 16px; margin-top: 14px;" onclick="CreateCaptcha()"></i>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <input type="text" placeholder="Enter Captcha/କ୍ୟାପ୍ଚା" class="form-control" id="txtcaptch" required autocomplete="off">
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                        <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <div class="pass-link"><a href="~/Login/ForgotPassword">Forgot password?</a></div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-custom btn-block text-uppercase">Log in Now</button>
+                        </div>
+                        @*<div class="form-group text-center"> <a href="/Registration/Registration">Apply For Registration</a></div>*@
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- login page end -->
+    <!-- client slider -->
+    <!-- client slider end-->
+    <!-- Footer -->
+    <section class="bg-dark footer" id="contact">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-lg-8">
+                    <h5 class="text-white footer-title ">Contact Us</h5>
+                    <div class="mt-4">
+                        <p class="footer-desc">
+                            Plot No. 326, OUAT Agriculture Farm Road, Baramunda, Bhubaneswar, Odisha, PIN-751003<br>
+                            Phone: 91-674-2354125<br>
+                            Email: apicol96@yahoo.com
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <ul class="list-unstyled text-white footer-social list-inline">
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-facebook facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-instagram instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-twitter twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-linkedin linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-white footer-title">Google Map</h5>
+                    <div class="mt-4">
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.769102690377!2d85.79455241474987!3d20.26840858641514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7901b58508f%3A0x2f5e428521fa8602!2sAPICOL%20BARMUNDA!5e0!3m2!1sen!2sin!4v1626533614453!5m2!1sen!2sin" width="380" height="auto" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-border"></div>
+            <div class="row pb-4">
+                <div class="col-lg-12">
+                    <div class="float-right pull-none">
+                        <p class="mb-0">
+                            © Montia
+                            <script>document.write(new Date().getFullYear())</script>.
+                        </p>
+                    </div>
+                    <div class="float-left pull-none">
+                        <p class="footer-terms"><a href="#">Terms</a> & <a href="#">Privacy Policy </a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer end -->
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="~/Login/js/jquery.min.js"></script>
+    <script src="~/Login/js/popper.min.js"></script>
+    <script src="~/Login/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Login/js/jquery.easing.min.js"></script>
+    <script src="~/Login/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+    <script src="~/Login/js/owl.carousel.min.js" type="text/javascript"></script>
+    <!--common script for all pages-->
+    <script src="~/Login/js/jquery.app.js"></script>
+</body>
+
+</html>
+
+
+<script>
+
+    function CreateCaptcha() {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Login/CreateCaptcha",
+            data: {},
+            dataType: "json",
+            success: function (resultData) {
+                $("#captcha").text(resultData);
+            }
+        });
+    }
+
+
+
+    $("form").submit(function () {
+        debugger;
+        var _txt1 = $('#captcha').text();
+        var _txt2 = $('#txtcaptch').val();
+        debugger;
+        if (_txt1 == _txt2) {
+            @* alert('Matching!');*@
+            return true;
+        }
+        else {
+            alert('Captch Not Matching!');
+            return false;
+        }
+    });
+
+</script>

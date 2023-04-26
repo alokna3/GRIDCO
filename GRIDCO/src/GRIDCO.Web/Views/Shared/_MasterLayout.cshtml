@@ -1,0 +1,776 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+    <title>APICOL</title>
+    <meta content="Admin Dashboard" name="description">
+    <meta content="ThemeDesign" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="~/assets/plugins/morris/morris.css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.1.96/css/materialdesignicons.min.css" />
+    <!-- DataTables -->
+    <link href="~/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <!-- Responsive datatable examples -->
+    <link href="~/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <!--Chartist Chart CSS -->
+
+    <link href="~/assets/css/loader.css" rel="stylesheet" />
+
+</head>
+<body class="fixed-left">
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left side-menu">
+            <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                <i class="ion-close"></i>
+            </button>
+            <div class="left-side-logo d-block d-lg-none">
+                <div class="text-center">
+                    <a href="index.html" class="logo">
+                        <img src="~/assets/images/logo-dark.png" height="20" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+
+
+                        @if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 1)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Master Management</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/Admin/Manageuser">Manageuser</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="/Admin/Panchayat">Panchayat Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Admin/Block">Block Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Admin/Occupation">Occupation Details</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Admin/Examplace">Examplace Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Admin/Role">Role Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Admin/Trainingplace">Trainingplace Details</a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                        }
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 2)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Registration</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/AEHUB/AEPS_Registration">REGISTRATION DETAILS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/AEHUB/Exam_Schedule">Schedule For Exam</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/AEHUB/Exam_Schedule_List">Exam Schedule List</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/AEHUB/Evaluation_List">EVALUATION DETAILS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/AEHUB/Payment_Status">PAYMENT STATUS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/AEHUB/BatchCreation">BATCH CREATION</a>
+                                    </li>
+                                    <li>
+                                        <a href="/AEHUB/BatchDetails">BATCH DETAILS</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Interface Assignment</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="/AEHUB/InterfaceAssiDtls">INTERFACE ASSIGNMENT BATCH CREATION</a>
+                                    </li>
+                                    <li>
+                                        <a href="/AEHUB/InterfaceAssiDtlsView">INTERFACE ASSIGNMENT BATCH CREATION DETAILS</a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="">Incubation Process</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/AEHUB/VerifyIncubation" class="text-uppercase">Verify Incubation Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/AEHUB/VerifyIncubationDtls" class="text-uppercase">Verified Incubation Details List</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>MPR</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/BRP/MPR_Approval_Process">Entrepreneur Mpr Approval</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                        }
+
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 3)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-capitalize">Registration</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/MD/AEPS_Registration">REGISTRATION DETAILS</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-capitalize">Training</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/MD/BATCH_SCHEDULE_APPROVAL">TRAINING BATCH APPROVAL</a>
+                                    </li>
+                                    <li>
+                                        <a href="/MD/Training_Batch_Approval_List">TRAINING BATCH APPROVAL LIST</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Interface Assignment</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/MD/ApprovedInterface">APPROVE Training Schedule Batch Wise </a>
+                                    </li>
+                                    <li>
+                                        <a href="/MD/ApprovedInterfaceList"> APPROVE Training Schedule Batch Wise LIST </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-uppercase">Incubation Process</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/Md/VerifyIncubation" class="text-uppercase">Verify Incubation Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Md/VerifyIncubationDtls" class="text-uppercase">Verified Incubation Details List</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>MPR</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/MD/MPR_Approval_Process">Entrepreneur Mpr Approval</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                        }
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 4)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>EXAM DETAILS</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+
+                                    <li>
+                                        <a href="/Dist/Exam_Schedule_List">Exam Schedule List</a>
+                                    </li>
+                                    <li>
+                                        <a href="/AEHUB/Evaluation_List">Evaluation Details</a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                        }
+
+
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 6)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Exam Details</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/So/Exam_Evaluation">Exam Evaluation</a>
+                                    </li>
+                                    <li>
+                                        <a href="/So/Evaluation_List">Evaluation Details</a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Training Details</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/So/BatchSchedule">Batch Schedule</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/So/Batch_Scheduled_List">Batch Schedule List</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Interface Assignment</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/So/ScheduleInterface" class="text-uppercase">Training Schedule Batch Wise</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/So/ScheduleInterfaceDtls" class="text-uppercase"> Approved Training Schedule Batch Wise Details</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-uppercase">Incubation Process</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/So/VerifyIncubation" class="text-uppercase">Verify Incubation Details</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/So/VerifyIncubationDtls" class="text-uppercase">Verified Incubation Details List</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>MPR</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/BRP/MPR_Approval_Process">Entrepreneur Mpr Approval</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                        }
+
+
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 5)
+                        {
+
+                            <li>
+                                <a href="/Dashboard/UserDashboard" class="waves-effect" style="background-color: #4381e9;">
+                                    <i class="dripicons-meter"></i>
+                                    <span>
+                                        Dashboard
+                                    </span>
+                                </a>
+                            </li>
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>Evaluation</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/User/Evaluation_Details">Evaluation Details</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+
+
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>PAYMENT</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/User/UserPayment">PAYMENT FOR TRAINING</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-uppercase">Interface Assignment</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/User/InterfaceAssi" class="text-uppercase">Interface Assignment Process</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/User/InterfaceAssiDtls" class="text-uppercase">Interface Assignment Applied Details</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-uppercase">Incubation Process</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/User/IncubationAssi" class="text-uppercase">Registration For Incubation</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/User/IncubationAssiDtls" class="text-uppercase">Incubation Registration Details</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span class="text-uppercase">MPR Process</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="/User/MPR_Process" class="text-uppercase">MPR Creation</a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                        }
+
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 7)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>MPR</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/BRP/MPR_Approval_Process">Entrepreneur Mpr Approval</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                        }
+
+
+                        else if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 8)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span>MPR</span>
+                                    <span class="menu-arrow float-right">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled">
+
+
+                                    <li>
+                                        <a href="/Finance/MPR_Pay">Mpr Pay</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- end sidebarinner -->
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- Start right Content here -->
+
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <!-- Top Bar Start -->
+                <div class="topbar">
+                    <div class="topbar-left	d-none d-lg-block">
+                        <div class="text-center">
+                            <a href="index.html" class="logo">
+                                <img src="~/assets/images/logo.png" height="20" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <nav class="navbar-custom">
+                        <ul class="list-inline float-right mb-0">
+
+
+
+                            <li class="list-inline-item dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <img src="~/assets/images/users/ProfileImage.jpg" alt="user" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile
+                                    </a>
+
+
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
+                                        <span data-i18n="drpdwn.settings">Settings</span>
+                                    </a>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-action="app-fullscreen">
+                                        <span data-i18n="drpdwn.fullscreen">Fullscreen</span>
+                                        <i class="float-right text-muted fw-n">F11</i>
+                                    </a>
+                                    <a href="#" class="dropdown-item" data-action="app-print">
+                                        <span data-i18n="drpdwn.print">Print</span>
+                                        <i class="float-right text-muted fw-n">Ctrl + P</i>
+                                    </a>
+                                    <a class="dropdown-item fw-500 pt-3 pb-3" href="/Admin/ChangePassword">
+                                        <span data-i18n="drpdwn.page-logout">Change Password</span>
+                                        <span class="float-right fw-n"></span>
+                                    </a>
+
+
+                                    @if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserType")) == 5)
+                                    {
+                                        <a class="dropdown-item" href="/Login/Logout_User">
+                                            <i class="mdi mdi-logout m-r-5 text-muted"></i> Logout
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item" href="/Login/Logout">
+                                            <i class="mdi mdi-logout m-r-5 text-muted"></i> Logout
+                                        </a>
+                                    }
+
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-inline menu-left mb-0">
+                            <li class="list-inline-item">
+                                <button type="button" class="button-menu-mobile open-left waves-effect">
+                                    <i class="mdi mdi-arrow-left"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </nav>
+                </div>
+                <!-- Top Bar End -->
+                <div class="page-content-wrapper">
+                    @RenderBody()
+
+                    <!-- container fluid -->
+                </div>
+                <!-- Page content Wrapper -->
+            </div>
+
+
+
+
+
+
+
+
+            <!-- content -->
+            <footer class="footer">
+                © 2023 - 2024 <b>APICOL</b>
+
+            </footer>
+        </div>
+        <!-- End Right content here -->
+    </div>
+    <!-- END wrapper -->
+    <!-- jQuery  -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/modernizr.min.js"></script>
+    <script src="~/assets/js/detect.js"></script>
+    <script src="~/assets/js/fastclick.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/jquery.blockUI.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/jquery.nicescroll.js"></script>
+    <script src="~/assets/js/jquery.scrollTo.min.js"></script>
+    <!-- skycons -->
+    <script src="~/assets/plugins/skycons/skycons.min.js"></script>
+    <!-- skycons -->
+    <script src="~/assets/plugins/peity/jquery.peity.min.js"></script>
+    <!--Morris Chart-->
+    <script src="~/assets/plugins/morris/morris.min.js"></script>
+    <script src="~/assets/plugins/raphael/raphael-min.js"></script>
+    <!-- dashboard -->
+    <script src="~/assets/pages/dashboard.js"></script>
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+    <!-- Required datatable js -->
+    <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="~/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables/jszip.min.js"></script>
+    <script src="~/assets/plugins/datatables/pdfmake.min.js"></script>
+    <script src="~/assets/plugins/datatables/vfs_fonts.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.print.min.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.colVis.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+    <!-- Datatable init js -->
+    <script src="~/assets/pages/datatables.init.js"></script>
+
+
+    <!--Chartist Chart-->
+    <script src="~/assets/plugins/chartist/js/chartist.min.js"></script>
+    <script src="~/assets/plugins/chartist/js/chartist-plugin-tooltip.min.js"></script>
+    <script src="~/assets/pages/chartist.init.js"></script>
+
+</body>
+</html>
