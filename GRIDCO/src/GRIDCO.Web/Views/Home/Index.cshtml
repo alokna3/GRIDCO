@@ -1,54 +1,815 @@
 ﻿@{
-    ViewData["Title"] = "Clean DDD Architecture Sample";
+    ViewData["Title"] = "HOME";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
-    <div class="col-md-4">
-        <h3>Using this template</h3>
-        <p>
-            This template includes support for:
-            <ul>
-                <li>APIs using API Endpoints (in the /Endpoints folder)</li>
-                <li>APIs using Controllers (in the /Api and /ApiModels folders)</li>
-                <li>Pages using Razor Pages (in the /Pages folder and /Views/Shared folder)</li>
-                <li>Pages using Controllers and Views (in the /Controllers, /ViewModels, and /Views folders - keep /Views/Shared for Razor Pages though)</li>
-            </ul>
-            Choose which features you will use for your project and delete the ones you will not use.
-        </p>
-        <p>
-            Provide feedback and report issues in the <a href="https://github.com/ardalis/CleanArchitecture">project's GitHub repository</a>; ask questions using the <a href="https://stackoverflow.com/questions/tagged/ardalis-cleanarchitecture?tab=Newest">ardalis-cleanarchitecture tag on StackOverflow</a>.
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h3>APIs</h3>
-        Shows both Controller and Endpoint APIs.
-        <ul>
-            <li><a href="/swagger">API Documentation (Swagger)</a></li>
-        </ul>
-        <h3>Projects (using Razor Pages)</h3>
-        <ul>
-            <li><a asp-page="/ProjectDetails/Index" asp-route-ProjectId="1">Show Project ID:1 and its To Do Items</a></li>
-            <li><a asp-page="/ProjectDetails/Incomplete">List Incomplete To Do Items</a></li>
-        </ul>
-        <h3>Projects (using MVC Views)</h3>
-        <ul>
-            <li><a asp-area="" asp-controller="Project" asp-action="Index" asp-route-projectId="1">Show Project ID:1 and its To Do Items</a></li>
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h3>About the Author</h3>
-        <ul>
-            <li><a href="https://ardalis.com">Blog - Ardalis.com</a></li>
-            <li><a href="https://twitter.com/ardalis">Twitter - @@ardalis</a></li>
-            <li><a href="https://github.com/ardalis">GitHub</a></li>
-            <li><a href="https://www.pluralsight.com/authors/steve-smith">Lastest Pluralsight Courses</a></li>
-        </ul>
-        <h3>More resources for this template</h3>
-        <ul>
-            <li><a href="https://github.com/ardalis/CleanArchitecture">CleanArchitecture GitHub repository</a></li>
-            <li><a href="https://stackoverflow.com/questions/tagged/ardalis-cleanarchitecture?tab=Newest">Ardalis-CleanArchitecture on Stack Overflow</a></li>
-            <li><a href="https://www.pluralsight.com/courses/domain-driven-design-fundamentals">Domain-Driven Design Fundamentals Course (Pluralsight)</a></li>
-            <li><a href="https://www.pluralsight.com/courses/n-tier-apps-part1">Creating N-Tier Applications in C# Course (Part 1) (Pluralsight)</a></li>
-            <li><a href="https://www.pluralsight.com/courses/n-tier-csharp-part2">Creating N-Tier Applications in C# Course (Part 2) (Pluralsight)</a></li>
-        </ul>
-    </div>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="/action_page.php" method="post">
+        <div class="container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <center> <h5>Login</h5></center>
+            <select name="select" id="select">
+                <option value="">Choose User Type</option>
+                <option value="Developer">Developer </option>
+                <option value="Industry">Industry</option>
+                <option value="Departmental">Departmental</option>
+
+            </select>
+
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1" ;>
+            <button style="background-color: #04AA6D;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                " type="submit">
+                Login
+            </button>
+
+            <button style="background-color: hsl(0, 95%, 34%);
+                  color: white;
+                  padding: 14px 20px;
+                  margin: 8px 0;
+                  border: none;
+                  cursor: pointer;
+                  " type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+                Cancel
+            </button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
 </div>
+
+<script>
+          // Get the modal
+          var modal = document.getElementById('id01');
+
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+              if (event.target == modal) {
+                  modal.style.display = "none";
+              }
+          }
+</script>
+
+<div id="id02" class="modal">
+
+    <form class="modal-content" action="/action_page.php">
+        <div class="container">
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <center><h5>Register</h5></center>
+            <select name="select" id="select">
+                <option value="">Choose User Type</option>
+                <option value="Developer">Developer </option>
+                <option value="Industry">Industry</option>
+                <option value="Departmental">Departmental</option>
+
+            </select>
+            <!-- <p>Please fill in this form to create an account.</p> -->
+            <hr>
+            <label for="email"><b>Mobile Number</b></label>
+            <input type="text" placeholder="Enter Mobile Number" name="email" required>
+
+            <label for="psw"><b>PAN</b></label>
+            <input type="password" placeholder="Enter PAN" name="psw" required>
+
+            <label for="psw-repeat"><b>OTP</b></label>
+            <input type="password" name="psw-repeat" required>
+
+            <label>
+                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+            </label>
+
+            <div class="clearfix">
+                <button style="background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            " type="submit" class="signupbtn">
+                    Register
+                </button>
+                <button style="background-color:red;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+
+            " type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">
+                    Cancel
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('id02');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+</script>
+
+
+<!-- ============================
+    Slider
+============================== -->
+<section class="slider">
+    <div class="slick-carousel carousel-arrows-light carousel-dots-light m-slides-0"
+         data-slick='{"slidesToShow": 1, "arrows": true, "dots": true, "speed": 700,"fade": true,"cssEase": "linear"}'>
+        <div class="slide-item align-v-h bg-overlay bg-overlay-2">
+            <div class="bg-img"><img src="assets/images/1.jpg" alt="slide img"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+                        <div class="slide__body">
+                            <span class="slide__subtitle">Complete Commercial, Residential & Industrial Solar Systems</span>
+                            <h2 class="slide__title">We Invest In The Future Of Planet!</h2>
+                            <p class="slide__desc">
+                                As a world wide distributor of solar supplies we endeavor to provide fast and
+                                knowledgeable service, we can get you materials by sea or air.
+                            </p>
+                            <div class="d-flex">
+                                <a href="services.html" class="btn btn__primary mr-30">
+                                    <i class="icon-arrow-right"></i><span>More About Us</span>
+                                </a>
+                                <a href="about-us.html" class="btn btn__white">More About Us!</a>
+                            </div>
+                        </div><!-- /.slide__body -->
+                    </div><!-- /.col-xl-8 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.slide-item -->
+        <div class="slide-item align-v-h bg-overlay">
+            <div class="bg-img"><img src="assets/images/2.jpg" alt="slide img"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+                        <div class="slide__body">
+                            <span class="slide__subtitle">Complete Commercial, Residential & Industrial Solar Systems</span>
+                            <h2 class="slide__title">Energize Society By Reliable Energy!</h2>
+                            <p class="slide__desc">
+                                As a world wide distributor of solar supplies we endeavor to provide fast and
+                                knowledgeable service, we can get you materials by sea or air.
+                            </p>
+                            <div class="d-flex">
+                                <a href="services.html" class="btn btn__primary mr-30">
+                                    <i class="icon-arrow-right"></i><span>More About Us</span>
+                                </a>
+                                <a href="about-us.html" class="btn btn__white">More About Us!</a>
+                            </div>
+                        </div><!-- /.slide__body -->
+                    </div><!-- /.col-xl-8 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.slide-item -->
+    </div><!-- /.carousel -->
+</section><!-- /.slider -->
+<!-- ========================
+    Team layout 2
+========================== -->
+<section class="team-layout2 text-center pt-3 pb-30">
+    <div class="container">
+        <div class="blog-share d-flex flex-wrap align-items-center justify-content-between mb-30" style="padding: 10px 30px;">
+            <strong style="color:red">Latest News</strong><marquee>Lorem ipsum dolor sit amet. Est galisum reiciendis et aliquam culpa ut veritatis error vel tempore aliquam aut voluptas quia sed dignissimos blanditiis? Ut exercitationem illum sed quam architecto est vitae aliquam rem sint impedit.</marquee>
+        </div><!-- /.blog-share -->
+        <div class="row">
+            <div class="col-12">
+                <div class="slick-carousel"
+                     data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "arrows": false, "dots": true, "responsive": [ {"breakpoint": 992, "settings": {"slidesToShow": 3, "slidesToScroll": 3}}, {"breakpoint": 767, "settings": {"slidesToShow": 1, "slidesToScroll": 1}}]}'>
+                    <!-- Feature item #1 -->
+                    <div class="feature-item1 col-sm-6 col-md-6 col-lg-3">
+                        <div class="member">
+                            <div class="member__img">
+                                <img src="assets/images/leadership/2.jpg" alt="member img">
+                            </div><!-- /.member-img -->
+                            <div class="member__info">
+                                <ul class="social-icons justify-content-center list-unstyled mb-0">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                                <h5 class="member__name">Shri Pratap Keshari Deb</h5>
+                                <p class="member__desc">Hon'ble Cabinet Ministers</p>
+                            </div><!-- /.member-info -->
+                        </div><!-- /.member -->
+                    </div><!-- /.feature-item -->
+                    <!-- Feature item #1 -->
+                    <div class="feature-item1 col-sm-6 col-md-6 col-lg-3">
+                        <div class="member">
+                            <div class="member__img">
+                                <img src="assets/images/leadership/4.jpg" alt="member img">
+                            </div><!-- /.member-img -->
+                            <div class="member__info">
+                                <ul class="social-icons justify-content-center list-unstyled mb-0">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                                <h5 class="member__name">Shri Sanjay Kumar Singh</h5>
+                                <p class="member__desc">Principal Secretary</p>
+                            </div><!-- /.member-info -->
+                        </div><!-- /.member -->
+                    </div><!-- /.feature-item -->
+                    <!-- Feature item #1 -->
+                    <div class="feature-item1 col-sm-6 col-md-6 col-lg-3">
+                        <div class="member">
+                            <div class="member__img">
+                                <img src="assets/images/leadership/5.jpg" alt="member img">
+                            </div><!-- /.member-img -->
+                            <div class="member__info">
+                                <ul class="social-icons justify-content-center list-unstyled mb-0">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                                <h5 class="member__name">Shri Trilochan Panda</h5>
+                                <p class="member__desc">Managing Director</p>
+                            </div><!-- /.member-info -->
+                        </div><!-- /.member -->
+                    </div><!-- /.feature-item -->
+                    <!-- Feature item #1 -->
+                    <div class="feature-item1 col-sm-6 col-md-6 col-lg-3">
+                        <div class="member">
+                            <div class="member__img">
+                                <img src="assets/images/leadership/6.jpg" alt="member img">
+                            </div><!-- /.member-img -->
+                            <div class="member__info">
+                                <ul class="social-icons justify-content-center list-unstyled mb-0">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                                <h5 class="member__name">Shri Gagan Bihari Swain</h5>
+                                <p class="member__desc">Director (F&CA)</p>
+                            </div><!-- /.member-info -->
+                        </div><!-- /.member -->
+                    </div><!-- /.feature-item -->
+                    <!-- Feature item #1 -->
+                    <div class="feature-item1 col-sm-6 col-md-6 col-lg-3">
+                        <div class="member">
+                            <div class="member__img">
+                                <img src="assets/images/leadership/7.jpg" alt="member img">
+                            </div><!-- /.member-img -->
+                            <div class="member__info">
+                                <ul class="social-icons justify-content-center list-unstyled mb-0">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                                <h5 class="member__name">Shri Umakanta Sahoo</h5>
+                                <p class="member__desc">Director(T&BD)</p>
+                            </div><!-- /.member-info -->
+                        </div><!-- /.member -->
+                    </div><!-- /.feature-item -->
+                </div><!-- /.carousel-->
+            </div><!-- /.col-12 -->
+        </div> <!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.Team layout 2  -->
+<!-- ========================
+  About Layout 1
+=========================== -->
+<section class="about-layout1" style="padding-top: 30px !important;">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-7 offset-lg-1">
+                <div class="heading__layout2 mb-60">
+                    <h2 class="heading__subtitle">Leading The Way In Building And Civil Construction</h2>
+                    <h3 class="heading__title">We Are Ready For Solar Energy, All We Need Is To Use It Well!</h3>
+                </div><!-- /.heading__layout2 -->
+            </div><!-- /.col-lg-7 -->
+        </div><!-- /.row -->
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-12 col-lg-2">
+                <!-- counter item #1 -->
+                <div class="counter-item">
+                    <h4 class="counter">6,154</h4>
+                    <p class="counter__desc pr-0">Projects Completed In Last 5 Years</p>
+                    <div class="divider__line"></div>
+                </div>
+                <!-- counter item #2 -->
+                <div class="counter-item">
+                    <h4 class="counter">2,512</h4>
+                    <p class="counter__desc pr-0">Qualified Employees & Workers With Us</p>
+                    <div class="divider__line"></div>
+                </div>
+                <!-- counter item #3 -->
+                <div class="counter-item">
+                    <h4 class="counter">0,241</h4>
+                    <p class="counter__desc pr-0">Awards Milestones Awarded To Us</p>
+                    <div class="divider__line"></div>
+                </div>
+            </div><!-- /.col-lg-2 -->
+            <div class="col-sm-12 col-md-12 col-lg-5">
+                <div class="video-banner-layout2">
+                    <img src="assets/images/1 (1).jpg" alt="about" class="w-100">
+                    <div class="video-has-img">
+                        <img src="assets/images/video/1.jpg" alt="video">
+                        <a class="video__btn video__btn-white popup-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
+                            <div class="video__player">
+                                <i class="fa fa-play"></i>
+                            </div>
+                        </a>
+                        <span class="video__btn-title">Watch Our Intro!</span>
+                    </div>
+                </div><!-- /.video-banner -->
+            </div><!-- /.col-lg-5 -->
+            <div class="col-sm-12 col-md-12 col-lg-5">
+                <div class="about__text">
+                    <div class="text__icon">
+                        <i class="icon-green-energy3"></i>
+                    </div>
+                    <p class="heading__desc font-weight-medium color-secondary mb-30">
+                        We drive the transition to more
+                        sustainable, reliable, and affordable energy systems. With our innovative technologies, we energize
+                        society, that’s our aim!
+                    </p>
+                    <p class="heading__desc mb-20">
+                        The increase in extreme weather events and rising sea levels are
+                        unmistakable
+                        signs of climate change. Roughly 850 million people still live without access to electricity, which is
+                        the foundation of sustainable development.
+                    </p>
+                    <p class="heading__desc mb-20">
+                        How can we meet the growing demand for electricity while protecting our
+                        climate
+                        and make planet a better place?
+                    </p>
+                    <div class="d-flex align-items-center mt-30">
+                        <a href="services.html" class="btn btn__secondary mr-30">
+                            <i class="icon-arrow-right"></i> <span>Learn More</span>
+                        </a>
+                        <img src="assets/images/about/singnture.png" alt="singnture">
+                    </div>
+                </div><!-- /.about__text -->
+            </div><!-- /.col-lg-5 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.About Layout 1 -->
+<!-- ======================
+services Layout 2
+========================= -->
+<!-- ======================
+Features Layout 2
+========================= -->
+<section class="features-layout2 pt-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-5">
+                <h2 class="heading__subtitle color-primary">Making Tomorrow Different Today.</h2>
+                <h3 class="heading__title">Background of RE Nodal Agency</h3>
+                <p class="heading__desc mb-30">
+                    Odisha RE Policy, 2022 was notified on 30.11.2022 and released during the Make in Odisha Conclave, 2022.
+                    The policy envisions renewable energy capacity addition of ~10+ GW in the state by 2030.
+                    The policy focuses on enabling “Just Transition” in the state and focuses on developing a pipeline of RE projects so that the energy needs of the state can be met from sources within the state in a sustainable manner.
+                    GRIDCO has been nominated as the Nodal Agency vide Notification No 12284 dated 15.12.2022
+                    The Single Window Clearance Committee has also been constituted
+                </p>
+                <a href="#" class="btn btn__primary btn__outlined btn__custom mb-40">
+                    <i class="icon-arrow-right"></i>
+                    <span>Explore All Features!</span>
+                </a>
+            </div><!-- /col-lg-5 -->
+            <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1">
+                <div class="row">
+                    <!-- Feature item #1 -->
+                    <div class="col-sm-6">
+                        <div class="feature-item">
+                            <div class="feature__icon">
+                                <i class="icon-hydro-power3"></i>
+                            </div>
+                            <h4 class="feature__title">Save Your Money</h4>
+                            <p class="feature__desc">
+                                Save money on utilities or increase the value of your home by installing
+                                solar
+                            </p>
+                        </div><!-- /.feature-item -->
+                    </div><!-- /.col-sm-6 -->
+                    <!-- Feature item #2 -->
+                    <div class="col-sm-6">
+                        <div class="feature-item">
+                            <div class="feature__icon">
+                                <i class="icon-biosphere"></i>
+                            </div>
+                            <h4 class="feature__title">5Stars Customer Service</h4>
+                            <p class="feature__desc">
+                                Understand that we must go above our customer expectations during each
+                                interaction always.
+                            </p>
+                        </div><!-- /.feature-item -->
+                    </div><!-- /.col-sm-6 -->
+                    <!-- Feature item #3 -->
+                    <div class="col-sm-6">
+                        <div class="feature-item">
+                            <div class="feature__icon">
+                                <i class="icon-eco-house"></i>
+                            </div>
+                            <h4 class="feature__title">Your Home Is Energy</h4>
+                            <p class="feature__desc">
+                                Everyday the sun provides us with abundance of free energy by placing solar
+                            </p>
+                        </div><!-- /.feature-item -->
+                    </div><!-- /.col-sm-6 -->
+                    <!-- Feature item #4 -->
+                    <div class="col-sm-6">
+                        <div class="feature-item">
+                            <div class="feature__icon">
+                                <i class="icon-energy2"></i>
+                            </div>
+                            <h4 class="feature__title">Consult & Planning</h4>
+                            <p class="feature__desc">
+                                Our remote industrial solar systems are designed to reliably power our
+                                clients
+                            </p>
+                        </div><!-- /.feature-item -->
+                    </div><!-- /.col-sm-6 -->
+                    <!-- Feature item #5 -->
+                    <div class="col-sm-6">
+                        <div class="feature-item">
+                            <div class="feature__icon">
+                                <i class="icon-electric-car"></i>
+                            </div>
+                            <h4 class="feature__title">Certified Engineers</h4>
+                            <p class="feature__desc">
+                                Our sales engineers on our staff have experience and can design any complete
+                            </p>
+                        </div><!-- /.feature-item -->
+                    </div><!-- /.col-sm-6 -->
+                    <!-- Feature item #6 -->
+                    <div class="col-sm-6">
+                        <div class="feature-item feature-item-custom">
+                            <div class="feature__icon">
+                                <i class="icon-wind-socket"></i>
+                            </div>
+                            <h4 class="feature__title">Awards & <br> Milestones</h4>
+                            <p class="feature__desc">Benefiting from nearly 20 years experience.</p>
+                        </div><!-- /.feature-item -->
+                    </div><!-- /.col-sm-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+<!-- ======================
+portfolio Layout 3
+ ========================= -->
+<section class="portfolio-layout3 portfolio-carousel pt-120">
+    <div class="bg-img"><img src="assets/images/backgrounds/5.jpg" alt="background"></div>
+    <div class="container">
+        <div class="row mb-60">
+            <div class="col-12">
+                <h2 class="heading__subtitle color-primary">Improving The Performance Of Solar Energy.</h2>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-5">
+                <h3 class="heading__title color-white">Latest Projects, Solutions And Energy Supplies</h3>
+            </div><!-- /col-lg-5 -->
+            <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1">
+                <p class="heading__desc font-weight-bold color-gray mb-30">
+                    With our innovative technologies, clear focus on
+                    the needs of our
+                    customers, and 1,210 dedicated employees, we energize society. Let’s make tomorrow different today!
+                </p>
+                <a href="services.html" class="btn btn__white btn__outlined">
+                    <i class="icon-arrow-right"></i>
+                    <span>Our Core Values</span>
+                </a>
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="carousel-container">
+                    <div class="slick-carousel carousel-arrows-light carousel-dots-light"
+                         data-slick='{"slidesToShow": 3, "slidesToScroll": 3, "arrows": true, "dots": true, "responsive": [ {"breakpoint": 992, "settings": {"slidesToShow": 2 ,"slidesToScroll": 2}}, {"breakpoint": 767, "settings": {"slidesToShow": 2,"slidesToScroll": 2}}, {"breakpoint": 480, "settings": {"slidesToShow": 1,"slidesToScroll": 1}}]}'>
+                        <!-- portfolio item #1 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio__img">
+                                <img src="assets/images/1 (2).jpg" alt="portfolio img">
+                            </div><!-- /.portfolio-img -->
+                            <div class="portfolio__body">
+                                <div class="portfolio__cat">
+                                    <a href="#">Finance</a><a href="#">Supply Chain</a>
+                                </div><!-- /.portfolio-cat -->
+                                <h4 class="portfolio__title"><a href="#">Expanding The Solar Supply Chain Finance Program</a></h4>
+                                <p class="portfolio__desc">
+                                    We has announced the expansion of its solar supply chain finance (SCF)
+                                    program for PV module manufacturers...
+                                </p>
+                                <a href="projects-single-project.html" class="btn btn__primary btn__sm">
+                                    <i class="icon-arrow-right"></i>
+                                    <span>Explore More</span>
+                                </a>
+                            </div><!-- /.portfolio__body -->
+                        </div><!-- /.portfolio-item -->
+                        <!-- portfolio item #2 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio__img">
+                                <img src="assets/images/2 (1).jpg" alt="portfolio img">
+                            </div><!-- /.portfolio-img -->
+                            <div class="portfolio__body">
+                                <div class="portfolio__cat">
+                                    <a href="#">Wind Energy</a><a href="#">Innovations</a>
+                                </div><!-- /.portfolio-cat -->
+                                <h4 class="portfolio__title"><a href="#">Addressing Wind Energy Innovation Challenges</a></h4>
+                                <p class="portfolio__desc">
+                                    We has announced the expansion of its solar supply chain finance (SCF)
+                                    program for PV module manufacturers...
+                                </p>
+                                <a href="projects-single-project.html" class="btn btn__primary btn__sm">
+                                    <i class="icon-arrow-right"></i>
+                                    <span>Explore More</span>
+                                </a>
+                            </div><!-- /.portfolio__body -->
+                        </div><!-- /.portfolio-item -->
+                        <!-- portfolio item #3 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio__img">
+                                <img src="assets/images/3.jpg" alt="portfolio img">
+                            </div><!-- /.portfolio-img -->
+                            <div class="portfolio__body">
+                                <div class="portfolio__cat">
+                                    <a href="#">Electric Vehicle</a><a href="#">Infrastructures</a>
+                                </div><!-- /.portfolio-cat -->
+                                <h4 class="portfolio__title"><a href="#">Smarter Ways to Manage EV Charging Infrastructures</a></h4>
+                                <p class="portfolio__desc">
+                                    We has announced the expansion of its solar supply chain finance (SCF)
+                                    program for PV module manufacturers...
+                                </p>
+                                <a href="projects-single-project.html" class="btn btn__primary btn__sm">
+                                    <i class="icon-arrow-right"></i>
+                                    <span>Explore More</span>
+                                </a>
+                            </div><!-- /.portfolio__body -->
+                        </div><!-- /.portfolio-item -->
+                        <!-- portfolio item #4 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio__img">
+                                <img src="assets/images/4.jpg" alt="portfolio img">
+                            </div><!-- /.portfolio-img -->
+                            <div class="portfolio__body">
+                                <div class="portfolio__cat">
+                                    <a href="#">Green Energy</a><a href="#">ECO</a>
+                                </div><!-- /.portfolio-cat -->
+                                <h4 class="portfolio__title">
+                                    <a href="#">New Public Attitude Tracker Towards Renewable Energy</a>
+                                </h4>
+                                <p class="portfolio__desc">
+                                    We has announced the expansion of its solar supply chain finance (SCF)
+                                    program for PV module manufacturers...
+                                </p>
+                                <a href="projects-single-project.html" class="btn btn__primary btn__sm">
+                                    <i class="icon-arrow-right"></i>
+                                    <span>Explore More</span>
+                                </a>
+                            </div><!-- /.portfolio__body -->
+                        </div><!-- /.portfolio-item -->
+                        <!-- portfolio item #5 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio__img">
+                                <img src="assets/images/5.jpg" alt="portfolio img">
+                            </div><!-- /.portfolio-img -->
+                            <div class="portfolio__body">
+                                <div class="portfolio__cat">
+                                    <a href="#">Infrastructures</a><a href="#">Gas</a>
+                                </div><!-- /.portfolio-cat -->
+                                <h4 class="portfolio__title"><a href="#">Dangerous Environmental Impacts of Natural Gas</a></h4>
+                                <p class="portfolio__desc">
+                                    We has announced the expansion of its solar supply chain finance (SCF)
+                                    program for PV module manufacturers...
+                                </p>
+                                <a href="projects-single-project.html" class="btn btn__primary btn__sm">
+                                    <i class="icon-arrow-right"></i>
+                                    <span>Explore More</span>
+                                </a>
+                            </div><!-- /.portfolio__body -->
+                        </div><!-- /.portfolio-item -->
+                        <!-- portfolio item #6 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio__img">
+                                <img src="assets/images/6.jpg" alt="portfolio img">
+                            </div><!-- /.portfolio-img -->
+                            <div class="portfolio__body">
+                                <div class="portfolio__cat">
+                                    <a href="#">Finance</a><a href="#">Supply Chain</a>
+                                </div><!-- /.portfolio-cat -->
+                                <h4 class="portfolio__title"><a href="#">Expanding The Solar Supply Chain Finance Program</a></h4>
+                                <p class="portfolio__desc">
+                                    We has announced the expansion of its solar supply chain finance (SCF)
+                                    program for PV module manufacturers...
+                                </p>
+                                <a href="projects-single-project.html" class="btn btn__primary btn__sm">
+                                    <i class="icon-arrow-right"></i>
+                                    <span>Explore More</span>
+                                </a>
+                            </div><!-- /.portfolio__body -->
+                        </div><!-- /.portfolio-item -->
+                    </div><!-- /.carousel-->
+                    <a href="projects-modern.html" class="view-projects d-none d-xl-flex">All Projects</a>
+                </div><!-- /.carousel-container -->
+            </div><!-- /.col-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.portfolio Layout 3 -->
+<!-- ======================
+Testimonials
+========================= -->
+<section class="testimonials-layout1 pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+                <div class="heading text-center mb-40">
+                    <h2 class="heading__subtitle color-primary">Customers Doing it Their Way</h2>
+                    <h3 class="heading__title">Our Customers Share Their Experiences & Insights</h3>
+                </div><!-- /.heading -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-12">
+                <img src="assets/images/Odisha_blank_districts_map.svg.png" alt="map">
+                <!-- Testimonial #1 -->
+                <div class="testimonial-box">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/1.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+                <!-- Testimonial #2 -->
+                <div class="testimonial-box">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/2.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+                <!-- Testimonial #3 -->
+                <div class="testimonial-box">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/3.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+                <!-- Testimonial #4 -->
+                <div class="testimonial-box testimonial-hover-left">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/4.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+                <!-- Testimonial #5 -->
+                <div class="testimonial-box testimonial-hover-left">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/5.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+                <!-- Testimonial #6 -->
+                <div class="testimonial-box">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/1.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+                <!-- Testimonial #7 -->
+                <div class="testimonial-box">
+                    <div class="testimonial__thumb">
+                        <img src="assets/images/testimonials/thumbs/4.png" alt="author thumb">
+                        <span class="pulsing-animation pulsing-animation-1"></span>
+                        <span class="pulsing-animation pulsing-animation-2"></span>
+                        <span class="pulsing-animation pulsing-animation-3"></span>
+                    </div><!-- /.testimonial-thumb -->
+                    <div class="testimonial__panel">
+                        <div class="testimonial__desc">
+                            As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
+                            ready to help.
+                        </div>
+                    </div><!-- /.testimonial-panel -->
+                </div><!-- /. testimonial-box -->
+            </div><!-- /.col-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.testimonials -->
+<!-- ======================
+Cta Layout1
+========================= -->
+<section class="cta-layout1 pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="cta__item d-flex">
+                    <div class="cta__icon custom-icon">
+                        <i class="icon-solar-panel"></i>
+                    </div><!-- /.cta__icon -->
+                    <div class="cta__body">
+                        <h4 class="cta__title">Design & Shipping</h4>
+                        <p class="cta__desc">
+                            We collaborate with you to design and deliver a system that meets your utility
+                            usage and selecting equips.
+                        </p>
+                        <a href="#" class="btn btn__link btn__primary">
+                            <i class="icon-arrow-right"></i>
+                            <span>Schedule A Visit</span>
+                        </a>
+                    </div><!-- /.cta__body -->
+                </div><!-- /.cta__item -->
+            </div><!-- /.col-md-6 -->
+            <div class="col-sm-12 col-md-6">
+                <div class="cta__item d-flex">
+                    <div class="cta__icon custom-icon">
+                        <i class="icon-energy"></i>
+                    </div><!-- /.cta__icon -->
+                    <div class="cta__body">
+                        <h4 class="cta__title">Design & Shipping</h4>
+                        <p class="cta__desc">
+                            Whether you want to install the system on your own or hire local contractors
+                            directly managing installation.
+                        </p>
+                        <a href="#" class="btn btn__link btn__primary">
+                            <i class="icon-arrow-right"></i>
+                            <span>Schedule A Visit</span>
+                        </a>
+                    </div><!-- /.cta__body -->
+                </div><!-- /.cta__item -->
+            </div><!-- /.col-md-6 -->
+        </div><!-- /.cta -->
+        <div class="row">
+            <div class="col-12">
+                <p class="text__link text-center mb-0">
+                    Discover independence through the power of solar,
+                    <a href="#">
+                        <span>Explore Our Plans</span> <i class="icon-arrow-right"></i>
+                    </a>
+                </p>
+            </div><!-- /.col-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.cta layout1 -->

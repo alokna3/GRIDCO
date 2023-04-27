@@ -1,0 +1,169 @@
+﻿@model GRIDCO.Core.ProjectAggregate.Entity.GRIDCO_Role_Mst
+
+@{
+    ViewData["Title"] = "Role";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<style>
+
+
+    .htmls {
+        width: 90%;
+        background-color: #04AA6D;
+        padding: 18px;
+        color: white;
+    }
+
+    .csss {
+        width: 80%;
+        background-color: #2196F3;
+        padding: 18px;
+        color: white;
+    }
+
+    .jss {
+        width: 65%;
+        background-color: #f44336;
+        padding: 18px;
+        color: white;
+    }
+</style>
+<h2>Role Details</h2>
+<div class="row mb-3">
+
+    <div class="col-md-12">
+        <form action="/Admin/Role" method="post">
+
+            <div class="panel-content">
+                <div class="frame-wrap">
+                    @{string confirmMessage = Convert.ToString(TempData["MngUserMessage"]); string warningMessage = Convert.ToString(TempData["WarningMessage"]);}
+                    @if (!string.IsNullOrEmpty(confirmMessage))
+                    {
+                        <div class="alert alert-success alert-dismissable" id="divSuccessMessage">
+                            <input type="hidden" id="messagealert" value="@confirmMessage" />
+                            @confirmMessage
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    }
+                    else if (!string.IsNullOrEmpty(warningMessage))
+                    {
+                        <div class="alert alert-warning alert-dismissable" id="divSuccessMessage">
+                            <input type="hidden" id="messagealert" value="@warningMessage" />
+                            @warningMessage
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    }
+                    else if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable" id="divSuccessMessage">
+                            <input type="hidden" id="messagealert" value="@TempData["success"]" />
+                            @TempData["success"]
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    }
+                    else if (TempData["Delete"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable" id="divSuccessMessage">
+                            <input type="hidden" id="messagealert" value="@TempData["Delete"]" />
+                            @TempData["Delete"]
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    }
+
+                    else
+                    {
+                        <input type="hidden" id="messagealert" value="0" />
+                    }
+                    <div class="card p-3">
+                        <div class="row mb-2">
+
+                            <input hidden id="msgg" value="@TempData["success"]" />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" for="example-email-2">Role:</label>
+                                    @Html.HiddenFor(m => m.User_Type_Id)
+                                    @Html.TextBoxFor(X => X.User_Type, new { @class = "form-control", @required = "true", @id = "UserType" })
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 mt-4">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-warning waves-effect waves-themed " style="float:right;" onclick="location.reload()">Cancel</button>
+                                    <button type="submit" value="Create" id="submit" class="btn btn-primary waves-effect waves-themed" style="float:right;margin-right: 8px;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 mt-5">
+        <div class="card m-b-30">
+            <h4 class="card-header mt-0">Role List</h4>
+            <div class="card-body">
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr role="row">
+                            <th>SI.No</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.data != null)
+                        {
+                            int count = 0;
+                            foreach (var item in ViewBag.data)
+                            {
+                                count = count + 1;
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.User_Type</td>
+                                    <td>
+                                        <a href="/Admin/Role?id=@item.User_Type_Id" class="btn btn-primary btn-xs btn-icon waves-effect waves-themed"><i class="fal fa-Edit"></i>Edit</a>
+                                        <a href="/Admin/DeleteRole?id=@item.User_Type_Id" class="btn btn-danger btn-xs btn-icon waves-effect waves-themed"><i class="fal fa-Delete" style="color:red;padding-left:12px;" onclick="return confirm('Are you sure want to delete this Occupation Details ?')"></i>Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="cover-spin"></div>
+<script>
+    function DeleteRole(id) {
+        debugger;
+        if (confirm("Are you sure want to delete this Role Details ?")) {
+            $.ajax({
+                type: 'POST',
+                url: "/Admin/DeleteRole",
+                data: { id: id },
+                dataType: "json",
+                success: function (resultData) {
+                    if (resultData == 1) {
+                        alert("Role Details deleted successfully");
+                        location.href = "/Admin/DeleteRole";
+                    }
+                }
+            })
+        }
+        else {
+            return true;
+        }
+    }
+
+    $(function () {
+        $('form').submit(function () {
+            $('#cover-spin').show();
+        });
+    });
+
+
+</script>
